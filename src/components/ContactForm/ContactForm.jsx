@@ -11,19 +11,28 @@ const UserSchema = Yup.object().shape({
   number: Yup.string().min(3, "Too short").max(50).required("Required"),
 });
 
-export default function ContactForm({ addContact }) {
+export default function ContactForm() {
   const dispatch = useDispatch();
-  const contact = useSelector((state) => state.contact.addContact);
-  console.log(contact);
 
-  const handleSubmit = (event) => {
+  const contacts = useSelector((state) => state.contacts.items);
+  // console.log(contacts);
+
+  const handleSubmit = (value, actions) => {
+    // console.log("Form Values:", value);
+
+    actions.resetForm();
     dispatch(
       addContact({
         id: nanoid(),
-        name: event.target.elements.nme.value,
-        // number: value.number,
+        name: value.name,
+        number: value.number,
       })
     );
+    // console.log("Contact dispatched:", {
+    //   id: nanoid(),
+    //   name: value.name,
+    //   number: value.number,
+    // });
   };
 
   // const handleSubmit = (value, actions) => {
