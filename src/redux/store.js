@@ -36,6 +36,5 @@ export const store = configureStore({
       },
     }),
 });
-// console.log("Redux Store Initialized:", store.getState());
 
 export const persistor = persistStore(store);

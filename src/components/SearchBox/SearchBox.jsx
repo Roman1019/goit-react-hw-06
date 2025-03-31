@@ -5,18 +5,12 @@ import { changeFilter } from "../../redux/filtersSlice.js";
 
 export default function SearchBox() {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts.items);
+
   const filters = useSelector((state) => state.filters.name);
-  // console.log(filters);
 
   const handleSearch = (e) => {
     dispatch(changeFilter(e.target.value));
   };
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filters.toLowerCase())
-  );
-
-  console.log("Фільтровані контакти:", filteredContacts);
 
   const idFind = useId();
   return (
